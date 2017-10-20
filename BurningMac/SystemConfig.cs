@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using System.IO;
 
-namespace ADBBurningMAC
+namespace BurningMac 
 {
     class SystemConfig
     {
@@ -15,13 +15,15 @@ namespace ADBBurningMAC
 
             JObject systemConfig = JObject.Parse(File.ReadAllText(path));
 
+            /*
             pushJsonDataToCollection(systemConfig["display"]["resolution"], display.resolution);
             pushJsonDataToCollection(systemConfig["display"]["color_depth"], display.color_depth);
             pushJsonDataToCollection(systemConfig["display"]["display_type"], display.display_type);
             pushJsonDataToCollection(systemConfig["logo_ID"], logo.type);
+            */
             
 
-            print();
+            // print();
         }
 
         public static void pushJsonDataToCollection(JToken jtokens, Dictionary<int, String> dict)

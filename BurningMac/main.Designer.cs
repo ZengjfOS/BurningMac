@@ -41,47 +41,26 @@
             this.macE = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.macLV = new System.Windows.Forms.ListView();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.colorDepth = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.cleanOutputMessage = new System.Windows.Forms.Button();
-            this.adbcmdShow = new System.Windows.Forms.TextBox();
-            this.adbCmd = new System.Windows.Forms.Button();
+            this.ShowMessage = new System.Windows.Forms.TextBox();
+            this.HttpWrite = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.BurningStatue = new System.Windows.Forms.Button();
             this.BurningProgressBar = new System.Windows.Forms.ProgressBar();
-            this.displayResolution = new System.Windows.Forms.ComboBox();
-            this.displayArgs = new System.Windows.Forms.TabPage();
-            this.lable14 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.eepVersion = new System.Windows.Forms.TabPage();
-            this.label4 = new System.Windows.Forms.Label();
-            this.eepromVersion = new System.Windows.Forms.ComboBox();
-            this.logoID = new System.Windows.Forms.TabPage();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.softwarePartNumber = new System.Windows.Forms.TabPage();
-            this.tablepage = new System.Windows.Forms.TabControl();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.addMacAddressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.partNumberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.IPAddress = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.IPPort = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.displayArgs.SuspendLayout();
-            this.eepVersion.SuspendLayout();
-            this.logoID.SuspendLayout();
-            this.softwarePartNumber.SuspendLayout();
-            this.tablepage.SuspendLayout();
-            this.groupBox5.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox4
@@ -136,6 +115,7 @@
             this.deleteAllMac.TabIndex = 20;
             this.deleteAllMac.Text = "Delete All";
             this.deleteAllMac.UseVisualStyleBackColor = true;
+            this.deleteAllMac.Click += new System.EventHandler(this.deleteAllMac_Click);
             // 
             // deleteMac
             // 
@@ -145,6 +125,7 @@
             this.deleteMac.TabIndex = 16;
             this.deleteMac.Text = "Delete";
             this.deleteMac.UseVisualStyleBackColor = true;
+            this.deleteMac.Click += new System.EventHandler(this.deleteDB);
             // 
             // groupBox1
             // 
@@ -186,6 +167,7 @@
             this.addMAC.TabIndex = 0;
             this.addMAC.Text = "Add MAC";
             this.addMAC.UseVisualStyleBackColor = true;
+            this.addMAC.Click += new System.EventHandler(this.addMACClick);
             // 
             // macE
             // 
@@ -214,249 +196,47 @@
             this.macLV.TabIndex = 14;
             this.macLV.UseCompatibleStateImageBehavior = false;
             this.macLV.View = System.Windows.Forms.View.Details;
+            this.macLV.SelectedIndexChanged += new System.EventHandler(this.macLV_SelectedIndexChanged);
             // 
-            // textBox2
+            // ShowMessage
             // 
-            this.textBox2.Location = new System.Drawing.Point(475, 26);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(61, 23);
-            this.textBox2.TabIndex = 2;
+            this.ShowMessage.Location = new System.Drawing.Point(13, 20);
+            this.ShowMessage.Multiline = true;
+            this.ShowMessage.Name = "ShowMessage";
+            this.ShowMessage.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.ShowMessage.Size = new System.Drawing.Size(498, 142);
+            this.ShowMessage.TabIndex = 8;
             // 
-            // label9
+            // HttpWrite
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(542, 30);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(28, 14);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "FPS";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(420, 30);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(49, 14);
-            this.label8.TabIndex = 1;
-            this.label8.Text = "Frame:";
-            // 
-            // colorDepth
-            // 
-            this.colorDepth.FormattingEnabled = true;
-            this.colorDepth.Location = new System.Drawing.Point(315, 27);
-            this.colorDepth.Name = "colorDepth";
-            this.colorDepth.Size = new System.Drawing.Size(69, 22);
-            this.colorDepth.TabIndex = 0;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(226, 30);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(91, 14);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "Color Depth:";
-            // 
-            // cleanOutputMessage
-            // 
-            this.cleanOutputMessage.Location = new System.Drawing.Point(550, 113);
-            this.cleanOutputMessage.Name = "cleanOutputMessage";
-            this.cleanOutputMessage.Size = new System.Drawing.Size(75, 49);
-            this.cleanOutputMessage.TabIndex = 12;
-            this.cleanOutputMessage.Text = "Clean";
-            this.cleanOutputMessage.UseVisualStyleBackColor = true;
-            // 
-            // adbcmdShow
-            // 
-            this.adbcmdShow.Location = new System.Drawing.Point(13, 20);
-            this.adbcmdShow.Multiline = true;
-            this.adbcmdShow.Name = "adbcmdShow";
-            this.adbcmdShow.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.adbcmdShow.Size = new System.Drawing.Size(531, 142);
-            this.adbcmdShow.TabIndex = 8;
-            // 
-            // adbCmd
-            // 
-            this.adbCmd.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.adbCmd.Location = new System.Drawing.Point(550, 20);
-            this.adbCmd.Name = "adbCmd";
-            this.adbCmd.Size = new System.Drawing.Size(75, 80);
-            this.adbCmd.TabIndex = 7;
-            this.adbCmd.Text = "ADB Write";
-            this.adbCmd.UseVisualStyleBackColor = true;
+            this.HttpWrite.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.HttpWrite.Location = new System.Drawing.Point(518, 20);
+            this.HttpWrite.Name = "HttpWrite";
+            this.HttpWrite.Size = new System.Drawing.Size(106, 142);
+            this.HttpWrite.TabIndex = 7;
+            this.HttpWrite.Text = "Write";
+            this.HttpWrite.UseVisualStyleBackColor = true;
+            this.HttpWrite.Click += new System.EventHandler(this.HttpWrite_Click);
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.BurningStatue);
-            this.groupBox2.Controls.Add(this.cleanOutputMessage);
-            this.groupBox2.Controls.Add(this.adbcmdShow);
-            this.groupBox2.Controls.Add(this.adbCmd);
+            this.groupBox2.Controls.Add(this.HttpWrite);
+            this.groupBox2.Controls.Add(this.ShowMessage);
             this.groupBox2.Controls.Add(this.BurningProgressBar);
             this.groupBox2.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox2.Location = new System.Drawing.Point(12, 415);
+            this.groupBox2.Location = new System.Drawing.Point(12, 339);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(631, 197);
+            this.groupBox2.Size = new System.Drawing.Size(631, 202);
             this.groupBox2.TabIndex = 21;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "ADB To EEPROM Output Message";
-            // 
-            // BurningStatue
-            // 
-            this.BurningStatue.Location = new System.Drawing.Point(562, 170);
-            this.BurningStatue.Name = "BurningStatue";
-            this.BurningStatue.Size = new System.Drawing.Size(52, 23);
-            this.BurningStatue.TabIndex = 14;
-            this.BurningStatue.UseVisualStyleBackColor = true;
+            this.groupBox2.Text = "Output Message";
             // 
             // BurningProgressBar
             // 
             this.BurningProgressBar.Location = new System.Drawing.Point(10, 169);
             this.BurningProgressBar.Name = "BurningProgressBar";
-            this.BurningProgressBar.Size = new System.Drawing.Size(534, 23);
+            this.BurningProgressBar.Size = new System.Drawing.Size(614, 23);
             this.BurningProgressBar.TabIndex = 13;
-            // 
-            // displayResolution
-            // 
-            this.displayResolution.FormattingEnabled = true;
-            this.displayResolution.Location = new System.Drawing.Point(112, 27);
-            this.displayResolution.Name = "displayResolution";
-            this.displayResolution.Size = new System.Drawing.Size(69, 22);
-            this.displayResolution.TabIndex = 0;
-            // 
-            // displayArgs
-            // 
-            this.displayArgs.Controls.Add(this.textBox2);
-            this.displayArgs.Controls.Add(this.label9);
-            this.displayArgs.Controls.Add(this.label8);
-            this.displayArgs.Controls.Add(this.colorDepth);
-            this.displayArgs.Controls.Add(this.label6);
-            this.displayArgs.Controls.Add(this.displayResolution);
-            this.displayArgs.Controls.Add(this.lable14);
-            this.displayArgs.Location = new System.Drawing.Point(4, 24);
-            this.displayArgs.Name = "displayArgs";
-            this.displayArgs.Padding = new System.Windows.Forms.Padding(3);
-            this.displayArgs.Size = new System.Drawing.Size(604, 72);
-            this.displayArgs.TabIndex = 3;
-            this.displayArgs.Text = "Display";
-            this.displayArgs.UseVisualStyleBackColor = true;
-            // 
-            // lable14
-            // 
-            this.lable14.AutoSize = true;
-            this.lable14.Location = new System.Drawing.Point(23, 30);
-            this.lable14.Name = "lable14";
-            this.lable14.Size = new System.Drawing.Size(84, 14);
-            this.lable14.TabIndex = 1;
-            this.lable14.Text = "Resolution:";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(307, 25);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(69, 22);
-            this.comboBox1.TabIndex = 0;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(238, 28);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(42, 14);
-            this.label7.TabIndex = 1;
-            this.label7.Text = "Logo:";
-            // 
-            // eepVersion
-            // 
-            this.eepVersion.Controls.Add(this.label4);
-            this.eepVersion.Controls.Add(this.eepromVersion);
-            this.eepVersion.Location = new System.Drawing.Point(4, 24);
-            this.eepVersion.Name = "eepVersion";
-            this.eepVersion.Padding = new System.Windows.Forms.Padding(3);
-            this.eepVersion.Size = new System.Drawing.Size(604, 72);
-            this.eepVersion.TabIndex = 1;
-            this.eepVersion.Text = "EEPROM Version";
-            this.eepVersion.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(218, 30);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(70, 14);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Version: ";
-            // 
-            // eepromVersion
-            // 
-            this.eepromVersion.FormattingEnabled = true;
-            this.eepromVersion.Location = new System.Drawing.Point(312, 27);
-            this.eepromVersion.Name = "eepromVersion";
-            this.eepromVersion.Size = new System.Drawing.Size(71, 22);
-            this.eepromVersion.TabIndex = 0;
-            // 
-            // logoID
-            // 
-            this.logoID.Controls.Add(this.comboBox1);
-            this.logoID.Controls.Add(this.label7);
-            this.logoID.Location = new System.Drawing.Point(4, 24);
-            this.logoID.Name = "logoID";
-            this.logoID.Padding = new System.Windows.Forms.Padding(3);
-            this.logoID.Size = new System.Drawing.Size(604, 72);
-            this.logoID.TabIndex = 2;
-            this.logoID.Text = "Logo ID";
-            this.logoID.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(129, 27);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(154, 14);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Software Part Number:";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(289, 24);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(169, 23);
-            this.textBox1.TabIndex = 3;
-            // 
-            // softwarePartNumber
-            // 
-            this.softwarePartNumber.Controls.Add(this.label3);
-            this.softwarePartNumber.Controls.Add(this.textBox1);
-            this.softwarePartNumber.Location = new System.Drawing.Point(4, 24);
-            this.softwarePartNumber.Name = "softwarePartNumber";
-            this.softwarePartNumber.Padding = new System.Windows.Forms.Padding(3);
-            this.softwarePartNumber.Size = new System.Drawing.Size(604, 72);
-            this.softwarePartNumber.TabIndex = 0;
-            this.softwarePartNumber.Text = "Part Number";
-            this.softwarePartNumber.UseVisualStyleBackColor = true;
-            // 
-            // tablepage
-            // 
-            this.tablepage.Controls.Add(this.softwarePartNumber);
-            this.tablepage.Controls.Add(this.eepVersion);
-            this.tablepage.Controls.Add(this.logoID);
-            this.tablepage.Controls.Add(this.displayArgs);
-            this.tablepage.Location = new System.Drawing.Point(13, 23);
-            this.tablepage.Name = "tablepage";
-            this.tablepage.SelectedIndex = 0;
-            this.tablepage.Size = new System.Drawing.Size(612, 100);
-            this.tablepage.TabIndex = 15;
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.tablepage);
-            this.groupBox5.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox5.Location = new System.Drawing.Point(12, 280);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(631, 129);
-            this.groupBox5.TabIndex = 22;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Select Argument";
             // 
             // menuStrip1
             // 
@@ -464,20 +244,20 @@
             this.settingsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(667, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(654, 24);
             this.menuStrip1.TabIndex = 23;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(12, 21);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(12, 20);
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 634);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 549);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(667, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(654, 22);
             this.statusStrip1.TabIndex = 24;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -491,19 +271,68 @@
             this.partNumberToolStripMenuItem.Name = "partNumberToolStripMenuItem";
             this.partNumberToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
             // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.IPAddress);
+            this.groupBox5.Controls.Add(this.label3);
+            this.groupBox5.Controls.Add(this.IPPort);
+            this.groupBox5.Controls.Add(this.label4);
+            this.groupBox5.Location = new System.Drawing.Point(12, 283);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(631, 50);
+            this.groupBox5.TabIndex = 17;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "HTTP Settings";
+            // 
+            // IPAddress
+            // 
+            this.IPAddress.Location = new System.Drawing.Point(202, 18);
+            this.IPAddress.Name = "IPAddress";
+            this.IPAddress.Size = new System.Drawing.Size(134, 21);
+            this.IPAddress.TabIndex = 1;
+            this.IPAddress.Text = "192.168.1.202";
+            this.IPAddress.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(127, 22);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 12);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "IP Address";
+            // 
+            // IPPort
+            // 
+            this.IPPort.Location = new System.Drawing.Point(432, 19);
+            this.IPPort.Name = "IPPort";
+            this.IPPort.Size = new System.Drawing.Size(46, 21);
+            this.IPPort.TabIndex = 4;
+            this.IPPort.Text = "80";
+            this.IPPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(361, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(47, 12);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "IP Port";
+            // 
             // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(667, 656);
+            this.ClientSize = new System.Drawing.Size(654, 571);
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "main";
-            this.Text = "Form1";
+            this.Text = "BurningMac";
             this.groupBox4.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
@@ -511,18 +340,10 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.displayArgs.ResumeLayout(false);
-            this.displayArgs.PerformLayout();
-            this.eepVersion.ResumeLayout(false);
-            this.eepVersion.PerformLayout();
-            this.logoID.ResumeLayout(false);
-            this.logoID.PerformLayout();
-            this.softwarePartNumber.ResumeLayout(false);
-            this.softwarePartNumber.PerformLayout();
-            this.tablepage.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -543,36 +364,20 @@
         private System.Windows.Forms.TextBox macE;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListView macLV;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox colorDepth;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button cleanOutputMessage;
-        private System.Windows.Forms.TextBox adbcmdShow;
-        private System.Windows.Forms.Button adbCmd;
+        private System.Windows.Forms.TextBox ShowMessage;
+        private System.Windows.Forms.Button HttpWrite;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button BurningStatue;
         private System.Windows.Forms.ProgressBar BurningProgressBar;
-        private System.Windows.Forms.ComboBox displayResolution;
-        private System.Windows.Forms.TabPage displayArgs;
-        private System.Windows.Forms.Label lable14;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TabPage eepVersion;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox eepromVersion;
-        private System.Windows.Forms.TabPage logoID;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TabPage softwarePartNumber;
-        private System.Windows.Forms.TabControl tablepage;
-        private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addMacAddressToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem partNumberToolStripMenuItem;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.TextBox IPAddress;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox IPPort;
+        private System.Windows.Forms.Label label4;
     }
 }
 
