@@ -11,6 +11,8 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
+using System.Threading;
 
 namespace BurningMac
 {
@@ -148,12 +150,6 @@ namespace BurningMac
             }
         }
 
-        private void cleanAdbCmdShowClick(object sender, EventArgs e)
-        {
-            // 删除文本内容，并将状态标签颜色设为绿色
-            ShowMessage.Text = "";
-        }
-
         private void deleteAllMac_Click(object sender, EventArgs e)
         {
             if (MACSQLite.queryCount("macs") > 0)
@@ -169,8 +165,9 @@ namespace BurningMac
 
         }
 
-        private async void HttpWrite_Click(object sender, EventArgs e)
+        private void HttpWrite_Click(object sender, EventArgs e)
         {
+            /*
             try
             {
                 StringContent stringContent = new StringContent(
@@ -183,18 +180,130 @@ namespace BurningMac
                     if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
                     {
                         // Do something...
-                        Console.WriteLine("HttpWrite_Click.");
-                        ShowMessage.Text =  await httpResponseMessage.Content.ReadAsStringAsync();
-                        Console.WriteLine(httpResponseMessage.ToString());
+                        ShowMessage.Text = "";
+                        ShowMessage.AppendText("HttpWrite_Click.\r\n");
+                        var ret_json = await httpResponseMessage.Content.ReadAsStringAsync();
+                        ShowMessage.AppendText(ret_json);
+
+                        dynamic json = JValue.Parse(ret_json)  as dynamic;
+                        if (json["status"].ToString() == "ok")
+                        {
+                            Console.WriteLine(currentMAC.Text);
+                            if (MACSQLite.queryCount("macs") > 0)
+                            {
+                                // 删除MAC，并刷新listview
+                                MACSQLite.deleteMac("macs", currentMAC.Text);
+                                refreshListView();
+                            }
+                            else
+                            {
+                                currentMAC.Text = "00:00:00:00:00:00";
+                            }
+                            ShowMessage.AppendText("Has Delete MAC Database.\r\n");
+                            HttpWrite.BackColor = Color.Green;
+                        }
+                        else
+                        {
+                            ShowMessage.AppendText("Delete MAC Error.\r\n");
+                            HttpWrite.BackColor = Color.Red;
+                        }
+
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
-                
+                ShowMessage.AppendText(ex.ToString());
+                HttpWrite.BackColor = Color.Red;
+            }
+            */
+
+            HttpWrite.UseVisualStyleBackColor = true; 
+            HttpWrite.Enabled = false;
+            ShowMessage.Text = "";
+            new Thread (httpAccess).Start();     
+
+        }
+
+        private void showMessageInfo(String mesg)
+        {
+            MethodInvoker action = delegate { ShowMessage.AppendText(mesg); };
+            ShowMessage.BeginInvoke(action);
+        }
+
+        private void dealProgressValue(int value)
+        {
+            MethodInvoker action = delegate { dealProgress.Value = value; };
+            ShowMessage.BeginInvoke(action);
+        }
+
+        private async void httpAccess()
+        {
+            dealProgressValue(0);
+            showMessageInfo("Start Http Request... \n");
+            try
+            {
+                StringContent stringContent = new StringContent(
+                    "{\"categories\":\"MAC\", \"type\": \"set\", \"MAC\":\"" + currentMAC.Text + "\"}", UnicodeEncoding.UTF8, "application/json");
+                var handler = new HttpClientHandler() { AutomaticDecompression = DecompressionMethods.None };
+
+                using (var client = new HttpClient(handler))
+                {
+                    dealProgressValue(10);
+                    showMessageInfo("Send Json Data To Http Server... \n");
+                    var httpResponseMessage = await client.PostAsync("http://" + IPAddress.Text + ":" + IPPort.Text + "/settings.php", stringContent);
+                    if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
+                    {
+                        var ret_json = await httpResponseMessage.Content.ReadAsStringAsync();
+                        showMessageInfo("Recv Json Data To Http Server... \n");
+                        showMessageInfo(ret_json);
+                        dealProgressValue(50);
+
+                        MethodInvoker action = delegate {
+                            dynamic json = JValue.Parse(ret_json)  as dynamic;
+                            if (json["status"].ToString() == "ok")
+                            {
+                                Console.WriteLine(currentMAC.Text);
+                                if (MACSQLite.queryCount("macs") > 0)
+                                {
+                                    // 删除MAC，并刷新listview
+                                    MACSQLite.deleteMac("macs", currentMAC.Text);
+                                    refreshListView();
+                                }
+                                else
+                                {
+                                    currentMAC.Text = "00:00:00:00:00:00";
+                                }
+                                showMessageInfo("Has Delete MAC Database.\r\n");
+                                HttpWrite.BackColor = Color.Green;
+                                dealProgressValue(90);
+                            }
+                            else
+                            {
+                                showMessageInfo("Delete MAC Error.\r\n");
+                                HttpWrite.BackColor = Color.Red;
+                                dealProgressValue(0);
+                            }
+
+                            dealProgressValue(100);
+                            HttpWrite.Enabled = true;
+                        };
+                        ShowMessage.BeginInvoke(action);
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                showMessageInfo(ex.ToString());
+                MethodInvoker action = delegate {
+                    HttpWrite.BackColor = Color.Red;
+                    HttpWrite.Enabled = true;
+                };
+                ShowMessage.BeginInvoke(action);
+                dealProgressValue(0);
             }
 
-        } 
+        }
     }
 }

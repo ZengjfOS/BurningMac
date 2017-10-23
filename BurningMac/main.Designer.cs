@@ -44,7 +44,6 @@
             this.ShowMessage = new System.Windows.Forms.TextBox();
             this.HttpWrite = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.BurningProgressBar = new System.Windows.Forms.ProgressBar();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -55,6 +54,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.IPPort = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.dealProgress = new System.Windows.Forms.ProgressBar();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -220,9 +220,9 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.dealProgress);
             this.groupBox2.Controls.Add(this.HttpWrite);
             this.groupBox2.Controls.Add(this.ShowMessage);
-            this.groupBox2.Controls.Add(this.BurningProgressBar);
             this.groupBox2.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox2.Location = new System.Drawing.Point(12, 339);
             this.groupBox2.Name = "groupBox2";
@@ -230,13 +230,6 @@
             this.groupBox2.TabIndex = 21;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Output Message";
-            // 
-            // BurningProgressBar
-            // 
-            this.BurningProgressBar.Location = new System.Drawing.Point(10, 169);
-            this.BurningProgressBar.Name = "BurningProgressBar";
-            this.BurningProgressBar.Size = new System.Drawing.Size(614, 23);
-            this.BurningProgressBar.TabIndex = 13;
             // 
             // menuStrip1
             // 
@@ -255,7 +248,7 @@
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 549);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 543);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(654, 22);
             this.statusStrip1.TabIndex = 24;
@@ -320,18 +313,27 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "IP Port";
             // 
+            // dealProgress
+            // 
+            this.dealProgress.Location = new System.Drawing.Point(13, 170);
+            this.dealProgress.Name = "dealProgress";
+            this.dealProgress.Size = new System.Drawing.Size(611, 23);
+            this.dealProgress.TabIndex = 9;
+            // 
             // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(654, 571);
+            this.ClientSize = new System.Drawing.Size(654, 565);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "main";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BurningMac";
             this.groupBox4.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
@@ -367,7 +369,6 @@
         private System.Windows.Forms.TextBox ShowMessage;
         private System.Windows.Forms.Button HttpWrite;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ProgressBar BurningProgressBar;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
@@ -378,6 +379,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox IPPort;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ProgressBar dealProgress;
     }
 }
 
