@@ -29,8 +29,7 @@ namespace BurningMac
             // 初始化显示的当前的MAC
             initCurrentMACLable();
 
-            // SystemConfig.parserConfig("configs/SystemConfig.json");
-            SystemConfig.parserConfig("configs/system_config.json");
+            SystemConfig.parserConfig("configs/SystemConfig.json");
         }
 
         // 从数据库中获取第一行中的MAC 
