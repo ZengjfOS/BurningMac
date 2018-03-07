@@ -44,6 +44,7 @@
             this.ShowMessage = new System.Windows.Forms.TextBox();
             this.HttpWrite = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dealProgress = new System.Windows.Forms.ProgressBar();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -54,7 +55,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.IPPort = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.dealProgress = new System.Windows.Forms.ProgressBar();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -147,7 +147,7 @@
             this.macB.Name = "macB";
             this.macB.Size = new System.Drawing.Size(134, 23);
             this.macB.TabIndex = 1;
-            this.macB.Text = "00:00:00:00:00:00";
+            this.macB.Text = "7C:CB:E2:E1:19:9E";
             this.macB.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label1
@@ -175,7 +175,7 @@
             this.macE.Name = "macE";
             this.macE.Size = new System.Drawing.Size(134, 23);
             this.macE.TabIndex = 4;
-            this.macE.Text = "00:00:00:00:00:00";
+            this.macE.Text = "7C:CB:E2:E1:19:A4";
             this.macE.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label2
@@ -231,6 +231,13 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Output Message";
             // 
+            // dealProgress
+            // 
+            this.dealProgress.Location = new System.Drawing.Point(13, 170);
+            this.dealProgress.Name = "dealProgress";
+            this.dealProgress.Size = new System.Drawing.Size(611, 23);
+            this.dealProgress.TabIndex = 9;
+            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -279,9 +286,9 @@
             // 
             // IPAddress
             // 
-            this.IPAddress.Location = new System.Drawing.Point(202, 18);
+            this.IPAddress.Location = new System.Drawing.Point(219, 18);
             this.IPAddress.Name = "IPAddress";
-            this.IPAddress.Size = new System.Drawing.Size(134, 21);
+            this.IPAddress.Size = new System.Drawing.Size(135, 21);
             this.IPAddress.TabIndex = 1;
             this.IPAddress.Text = "192.168.1.202";
             this.IPAddress.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -289,7 +296,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(127, 22);
+            this.label3.Location = new System.Drawing.Point(145, 22);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 12);
             this.label3.TabIndex = 2;
@@ -297,7 +304,7 @@
             // 
             // IPPort
             // 
-            this.IPPort.Location = new System.Drawing.Point(432, 19);
+            this.IPPort.Location = new System.Drawing.Point(441, 19);
             this.IPPort.Name = "IPPort";
             this.IPPort.Size = new System.Drawing.Size(46, 21);
             this.IPPort.TabIndex = 4;
@@ -307,18 +314,11 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(361, 22);
+            this.label4.Location = new System.Drawing.Point(379, 22);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(47, 12);
             this.label4.TabIndex = 3;
             this.label4.Text = "IP Port";
-            // 
-            // dealProgress
-            // 
-            this.dealProgress.Location = new System.Drawing.Point(13, 170);
-            this.dealProgress.Name = "dealProgress";
-            this.dealProgress.Size = new System.Drawing.Size(611, 23);
-            this.dealProgress.TabIndex = 9;
             // 
             // main
             // 

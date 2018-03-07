@@ -242,20 +242,18 @@ namespace BurningMac
             showMessageInfo("Start Http Request... \n");
             try
             {
-                StringContent stringContent = new StringContent(
-                    "{\"categories\":\"MAC\", \"type\": \"set\", \"MAC\":\"" + currentMAC.Text + "\"}", UnicodeEncoding.UTF8, "application/json");
                 var handler = new HttpClientHandler() { AutomaticDecompression = DecompressionMethods.None };
 
                 using (var client = new HttpClient(handler))
                 {
                     dealProgressValue(10);
-                    showMessageInfo("Send Json Data To Http Server... \n");
-                    var httpResponseMessage = await client.PostAsync("http://" + IPAddress.Text + ":" + IPPort.Text + "/settings.php", stringContent);
+                    showMessageInfo("Send Data To Http Server... \n");
+                    var httpResponseMessage = await client.GetAsync("http://" + IPAddress.Text + ":" + IPPort.Text + "/common/eeprom.php?version=3&mac=" + currentMAC.Text.Replace(":", ""));
                     if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
                     {
                         var ret_json = await httpResponseMessage.Content.ReadAsStringAsync();
-                        showMessageInfo("Recv Json Data To Http Server... \n");
-                        showMessageInfo(ret_json);
+                        showMessageInfo("Recv Json Data From Http Server... \n");
+                        showMessageInfo(ret_json + "\n");
                         dealProgressValue(50);
 
                         MethodInvoker action = delegate {
